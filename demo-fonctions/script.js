@@ -132,20 +132,22 @@ const people = [
   { lastname: "Lambert", firstname: "Antoine", sex: "H", age: 43 },
   { lastname: "Mercier", firstname: "Zoé", sex: "F", age: 36 },
   { lastname: "Rousseau", firstname: "Raphaël", sex: "H", age: 61 },
+  { lastname: "Dupont", firstname: "Antoine", sex: "H", age: 45 }
 ];
 
 /**
  *
  *
  * @param {{lastname: string, firstname: string, sex: 'H' | 'F' | 'X', age: number}[]} array
+ * @param {(personne: {lastname: string, firstname: string, sex: 'H' | 'F' | 'X', age: number}) => boolean} compareFn 
  * @return {*} 
  */
-function filter (array) {
+function filter (array, compareFn) {
 
   const filtered = [];
 
   for (const element of array) {
-    if (element.age < 18) {
+    if (compareFn(element)) {
       filtered.push(element);
     }
   }
@@ -154,6 +156,31 @@ function filter (array) {
 
 }
 
-const mineurs = filter (people);
+// const mineurs = filter (people);
 
-console.log('majeurs :>> ', mineurs);
+// console.log('majeurs :>> ', mineurs);
+
+function estHommeFn (personne) {
+  return personne.sex === 'H'
+}
+
+function estFemmeFn (personne) {
+  return personne.sex === 'F'
+}
+
+function estMajeurFn (personne) {
+  return personne.age >= 18
+}
+
+const femmes = filter(people, estFemmeFn);
+const majeurs = filter(people, estMajeurFn);
+const duponts = filter(people, function (personne) {
+  return personne.lastname == "Dupont";
+});
+
+const lastnameStartsWith = filter(people, p => p.lastname.startsWith("R"));
+
+console.log('femmes :>> ', femmes);
+console.log('majeurs :>> ', majeurs);
+console.log('duponts :>> ', duponts);
+console.log('lastnameStartsWith :>> ', lastnameStartsWith);
