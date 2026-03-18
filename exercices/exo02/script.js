@@ -10,3 +10,30 @@
       11:45:18
   """""""""""""
 */
+
+window.addEventListener("DOMContentLoaded", () => {
+  const date = document.getElementById("date");
+  const time = document.getElementById("time");
+
+  function updateClock() {
+    const now = new Date();
+
+    date.textContent = now.toLocaleDateString("fr-BE", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+    time.textContent = now.toLocaleTimeString("fr-BE", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+
+    setTimeout(updateClock, 1000);
+  }
+
+  // setInterval(updateClock, 1000);
+  updateClock();
+});
