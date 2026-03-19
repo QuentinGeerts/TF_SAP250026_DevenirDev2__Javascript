@@ -6,11 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <div class="container">
+    <div id="section-catalog">
 
+      <h2>Le catalogue</h2>
+
+      <table>
+        <thead>
+          <td>Nom</td>
+          <td>Prix</td>
+          <td>Options</td>
+        </thead>
+        <tbody id="products"></tbody>
+      </table>
+
+    </div>
+
+    <div id="section-cart">
+      <h2>Le panier</h2>
+
+      <table>
+        <thead>
+          <td>Nom</td>
+          <td>Prix / u</td>
+          <td>Quantité</td>
+          <td>Options</td>
+        </thead>
+        <tbody id="cart"></tbody>
+        <tfoot>
+          <td colspan="3"><span id="total"></span> €</td>
+          <td>Total</td>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
 
 </body>
 
